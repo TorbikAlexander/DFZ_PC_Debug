@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/res/main">
+        <file>Pictures/avar0.png</file>
+        <file>Pictures/avar1.png</file>
+        <file>Pictures/Connection Active.png</file>
+        <file>Pictures/Connection Disabled.png</file>
+        <file>Pictures/predupr0.png</file>
+        <file>Pictures/predupr1.png</file>
+        <file>Pictures/rabota0.png</file>
+        <file>Pictures/rabota1.png</file>
+        <file>Pictures/documentinfo.png</file>
+        <file>Pictures/info_off.png</file>
+        <file>Pictures/configure.png</file>
+        <file>Pictures/encrypted.png</file>
+        <file>Pictures/knewstuff.png</file>
+        <file>Pictures/mail_find.png</file>
+        <file>Pictures/mouse.png</file>
+        <file>Pictures/page_accept.png</file>
+        <file>Pictures/search.png</file>
+        <file>Pictures/search_add.png</file>
+        <file>Pictures/search_remove.png</file>
+    </qresource>
+    <qresource prefix="/res/FlexLogic">
+        <file>Pictures/Da-yes.jpg</file>
+        <file>Pictures/AND_gate_RU.jpg</file>
+        <file>Pictures/NOT_gate_RU.jpg</file>
+        <file>Pictures/OR_gate_RU.jpg</file>
+        <file>Pictures/XOR_gate_RU.jpg</file>
+        <file>Pictures/PORT_IN.png</file>
+        <file>Pictures/PORT_OUT.png</file>
+        <file>Pictures/61692177-goose-icon-illustration.jpg</file>
+        <file>Pictures/cpu.png</file>
+        <file>Pictures/ktip.png</file>
+        <file>Pictures/log.png</file>
+        <file>Pictures/ReleInfoOn.png</file>
+    </qresource>
+</RCC>
