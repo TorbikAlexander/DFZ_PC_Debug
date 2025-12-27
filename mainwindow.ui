@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1156</width>
-    <height>782</height>
+    <height>846</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -32,7 +32,7 @@
       <x>20</x>
       <y>0</y>
       <width>1131</width>
-      <height>661</height>
+      <height>701</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -3696,7 +3696,7 @@
         <x>10</x>
         <y>0</y>
         <width>921</width>
-        <height>621</height>
+        <height>661</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="RBACgridLayout"/>
@@ -3781,6 +3781,145 @@
       <property name="text">
        <string>0x0000000000000000</string>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_40">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>350</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;&lt;to bits</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_h">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>270</y>
+        <width>131</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0x0000000000000000</string>
+      </property>
+      <property name="maxLength">
+       <number>18</number>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_l">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>320</y>
+        <width>131</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0x0000000000000000</string>
+      </property>
+      <property name="maxLength">
+       <number>18</number>
+      </property>
+     </widget>
+     <widget class="Line" name="line_4">
+      <property name="geometry">
+       <rect>
+        <x>926</x>
+        <y>10</y>
+        <width>20</width>
+        <height>601</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_41">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>190</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&gt;&gt;to hex</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_40">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>250</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Функции 1-64</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_41">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>300</y>
+        <width>141</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Функции 65-128</string>
+      </property>
+     </widget>
+     <widget class="Line" name="line_5">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>230</y>
+        <width>161</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="Line" name="line_6">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>80</y>
+        <width>161</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="Line" name="line_7">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>390</y>
+        <width>151</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
      </widget>
     </widget>
    </widget>
@@ -3788,7 +3927,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>670</y>
+      <y>710</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -3801,7 +3940,7 @@
     <property name="geometry">
      <rect>
       <x>620</x>
-      <y>670</y>
+      <y>710</y>
       <width>521</width>
       <height>71</height>
      </rect>

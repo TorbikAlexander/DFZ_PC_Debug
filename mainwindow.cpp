@@ -97,7 +97,7 @@ MainWindow::MainWindow(QWidget *parent)
         {
             quint8 index = i*32+j;
             m_RBACcheckBox[index] = new QCheckBox(RBAC_func_names[index]);
-            connect(m_RBACcheckBox[index], &QCheckBox::checkStateChanged, this, &MainWindow::on_RBACCheckBoxProcessState);
+            //connect(m_RBACcheckBox[index], &QCheckBox::checkStateChanged, this, &MainWindow::on_RBACCheckBoxProcessState);
             ui->RBACgridLayout->addWidget(m_RBACcheckBox[index],j,i);
         }
     }
@@ -1704,6 +1704,38 @@ void MainWindow::on_pushButton_39_clicked()
 
 void MainWindow::on_RBACCheckBoxProcessState(Qt::CheckState)
 {
+
+}
+
+void MainWindow::on_CalcCurrValcheckBox_toggled(bool checked)
+{
+
+}
+
+void MainWindow::on_pushButton_40_clicked()
+{
+    bool ok;
+    quint64 RBAC_role = ui->lineEdit_h->text().toULongLong(&ok,16);
+
+    for(quint8 i=0;i<64;i++)
+    {
+        bool is_checked = (bool)(RBAC_role & (quint64(1)<<i));
+        m_RBACcheckBox[i]->setChecked(is_checked);
+    }
+
+    RBAC_role = ui->lineEdit_l->text().toULongLong(&ok,16);
+
+    for(quint8 i=0;i<64;i++)
+    {
+        bool is_checked = (bool)(RBAC_role & (quint64(1)<<i));
+        m_RBACcheckBox[i+64]->setChecked(is_checked);
+    }
+
+}
+
+
+void MainWindow::on_pushButton_41_clicked()
+{
     quint64 RBAC_role = 0;
     bool isCheck = false;
     for(quint8 i=0;i<64;i++)
@@ -1714,7 +1746,7 @@ void MainWindow::on_RBACCheckBoxProcessState(Qt::CheckState)
 
     QString paddedString = QStringLiteral("%1").arg(RBAC_role,16, 16, QLatin1Char('0'));
     ui->RBACRolelineEdit->setText("0x"+ paddedString);
-   // ui->RBACRolelineEdit->setText("0x"+ QString::number(RBAC_role,16));
+    // ui->RBACRolelineEdit->setText("0x"+ QString::number(RBAC_role,16));
 
     RBAC_role = 0;
 
@@ -1726,11 +1758,4 @@ void MainWindow::on_RBACCheckBoxProcessState(Qt::CheckState)
     paddedString = QStringLiteral("%1").arg(RBAC_role,16, 16, QLatin1Char('0'));
     ui->RBACRolelineEdit2->setText("0x"+ paddedString);
 }
-
-void MainWindow::on_CalcCurrValcheckBox_toggled(bool checked)
-{
-
-}
-
-
 
