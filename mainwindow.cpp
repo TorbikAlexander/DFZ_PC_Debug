@@ -3,7 +3,7 @@
 #include "vadc_class.h"
 #include "settings_class.h"
 #include "OSC.h"
-
+#include "tmodbusdfz.h"
 
 #include <QDir>
 #include <QFile>
@@ -17,6 +17,7 @@
 #include <QMessageBox>
 #include <QDesktopServices>
 #include <QStack>
+#include <QModbusTcpClient>
 
 extern struct _osc_buff OSC_Buff[MDFZ_OSC_COUNT][MDFZ_OSC_MAX_MESS_COUNT];
 
@@ -40,6 +41,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     mVADC = new VADC_Class(this);
     mSettings = new Settings_class();
+
+    QThread *modbus_thread= new QThread;
+    mModbusDFZ = new TModbusDFZ(this);
+    mModbusDFZ->moveToThread(modbus_thread);
+    modbus_thread->start();
 
     ui->tabWidget->setCurrentIndex(0);
 
@@ -99,6 +105,17 @@ MainWindow::MainWindow(QWidget *parent)
             m_RBACcheckBox[index] = new QCheckBox(RBAC_func_names[index]);
             //connect(m_RBACcheckBox[index], &QCheckBox::checkStateChanged, this, &MainWindow::on_RBACCheckBoxProcessState);
             ui->RBACgridLayout->addWidget(m_RBACcheckBox[index],j,i);
+        }
+    }
+
+    for(quint8 i=0;i<9;i++)
+    {
+        for(quint8 j=0;j<16;j++)
+        {
+            quint8 index = i*16+j;
+            m_MDFZRegscheckBox[index] = new QCheckBox(MDFZModbusregisters[index]);
+            //m_MDFZRegscheckBox[index].
+            ui->RegsMDFZLayout->addWidget(m_MDFZRegscheckBox[index],j,i);
         }
     }
 
@@ -1759,3 +1776,23 @@ void MainWindow::on_pushButton_41_clicked()
     ui->RBACRolelineEdit2->setText("0x"+ paddedString);
 }
 
+
+
+void MainWindow::on_pushButton_42_clicked()
+{
+    mModbusDFZ->SetServerIP(ui->ModbusIPlineEdit->text());
+}
+
+void MainWindow::slotProcessRcvDFZRegData(QList<quint16> reg_data)
+{
+ //   qDebug() << reg_data;
+
+    for(quint8 i=0;i<9;i++)
+    {
+        for(quint8 j=0;j<16;j++)
+        {
+            bool is_checked = (bool)(reg_data[i] & (1<<j));
+            m_MDFZRegscheckBox[i*16+j]->setChecked(is_checked);
+        }
+    }
+}

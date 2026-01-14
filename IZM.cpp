@@ -2,7 +2,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "vadc_class.h"
-#include "settings_class.h"
 
 
 #include <QDir>
@@ -25,6 +24,12 @@ void MainWindow::slotIzmTimerProcedure(void)
      mVADC->VADC_GetLEDS();
      mVADC->VADC_GetMUHelth();
      mVADC->VADC_GetCompState();
+
+     if(ui->GetTermStatecheckBox->isChecked())
+     {
+         QModbusDataUnit modbus_unit(QModbusDataUnit::HoldingRegisters, 8, 9);
+         mModbusDFZ->SendMessage(modbus_unit);
+     }
 }
 
 void MainWindow::slotLEDSTimerProcedure()

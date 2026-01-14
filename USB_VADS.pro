@@ -5,6 +5,7 @@ QT       += widgets
 QT       += core5compat
 QT       += sql
 QT       += axcontainer
+QT       += serialbus
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -30,6 +31,7 @@ SOURCES += \
     tflexconnection.cpp \
     tflexport.cpp \
     tlogiccell.cpp \
+    tmodbusdfz.cpp \
     vadc_class.cpp
 
 HEADERS += \
@@ -44,6 +46,7 @@ HEADERS += \
     tflexconnection.h \
     tflexport.h \
     tlogiccell.h \
+    tmodbusdfz.h \
     vadc_class.h
 
 FORMS += \
