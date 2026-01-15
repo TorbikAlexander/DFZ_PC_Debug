@@ -3994,12 +3994,23 @@
    <widget class="QListWidget" name="TeminallistWidget">
     <property name="geometry">
      <rect>
-      <x>620</x>
+      <x>860</x>
       <y>710</y>
-      <width>521</width>
+      <width>281</width>
       <height>71</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_6">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>710</y>
+      <width>681</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="MURSRelegridLayout"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

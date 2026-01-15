@@ -119,6 +119,16 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
+    for(quint8 i=0;i<2;i++)
+    {
+        for(quint8 j=0;j<8;j++)
+        {
+            quint8 index = i*8+j;
+            m_MursReleState[index] = new QCheckBox(MURSReleNames[index]);
+            ui->MURSRelegridLayout->addWidget(m_MursReleState[index],i,j);
+        }
+    }
+
 }
 
 MainWindow::~MainWindow()
@@ -1785,14 +1795,23 @@ void MainWindow::on_pushButton_42_clicked()
 
 void MainWindow::slotProcessRcvDFZRegData(QList<quint16> reg_data)
 {
- //   qDebug() << reg_data;
+    bool is_checked;
 
-    for(quint8 i=0;i<9;i++)
+    for(quint8 i=3;i<5;i++)
+    {
+        for(quint8 j=0;j<8;j++)
+        {
+            is_checked = (bool)(reg_data[i] & (1<<j));
+            m_MursReleState[(i-3)*8+j]->setChecked(is_checked);
+        }
+    }
+
+    for(quint8 i=8;i<17;i++)
     {
         for(quint8 j=0;j<16;j++)
         {
-            bool is_checked = (bool)(reg_data[i] & (1<<j));
-            m_MDFZRegscheckBox[i*16+j]->setChecked(is_checked);
+            is_checked = (bool)(reg_data[i] & (1<<j));
+            m_MDFZRegscheckBox[(i-8)*16+j]->setChecked(is_checked);
         }
     }
 }

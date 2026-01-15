@@ -27,7 +27,7 @@ void MainWindow::slotIzmTimerProcedure(void)
 
      if(ui->GetTermStatecheckBox->isChecked())
      {
-         QModbusDataUnit modbus_unit(QModbusDataUnit::HoldingRegisters, 8, 9);
+         QModbusDataUnit modbus_unit(QModbusDataUnit::HoldingRegisters, 0, 17);
          mModbusDFZ->SendMessage(modbus_unit);
      }
 }

@@ -629,6 +629,8 @@ private:
 
     QCheckBox *m_MDFZRegscheckBox[16*9];
 
+    QCheckBox *m_MursReleState[16];
+
 };
 
 const QString RBAC_func_names[128] =
@@ -911,6 +913,27 @@ const QString MDFZModbusregisters[144] = {
     "Резерв",
     "Резерв",
     "Резерв"
+};
+
+const QString MURSReleNames[16] =
+{
+    "Работа",
+    "Предупр",
+    "Авария",
+    "Q1",
+    "Q2",
+    "Пуск БАПВ",
+    "УРОВ на себя",
+    "ЛУРОВ",
+
+    "КА",
+    "НЗНР на Q",
+    "Несел защита",
+    "Неиспр ~U",
+    "Запрет БАПВ",
+    "Работа ДФЗ",
+    "ВЧС№1",
+    "Работа ТДЗ"
 };
 
 
