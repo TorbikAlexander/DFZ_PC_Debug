@@ -43,7 +43,8 @@ MainWindow::MainWindow(QWidget *parent)
     mSettings = new Settings_class();
 
     QThread *modbus_thread= new QThread;
-    mModbusDFZ = new TModbusDFZ(this);
+    mModbusDFZ = new TModbusDFZ();
+    connect(mModbusDFZ,SIGNAL(signalRcvData(QList<quint16>)),this,SLOT(slotProcessRcvDFZRegData(QList<quint16>)));
     mModbusDFZ->moveToThread(modbus_thread);
     modbus_thread->start();
 

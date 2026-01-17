@@ -14,7 +14,7 @@ TModbusDFZ::TModbusDFZ(QObject *parent)
     m_state = MODBUS_STATE_IDLE;
 
      connect(this,SIGNAL(signalProcessMessage()),this,SLOT(slotProcessExchange()));
-     connect(this,SIGNAL(signalRcvData(QList<quint16>)),parent,SLOT(slotProcessRcvDFZRegData(QList<quint16>)));
+
 
      m_modbus_client = new QModbusTcpClient(this);
      connect(m_modbus_client, &QModbusClient::stateChanged,this, &TModbusDFZ::onClientStateChanged);
