@@ -59,41 +59,52 @@ void TModbusDFZ::slotProcessExchange()
     m_modbus_client->setTimeout(500);
     m_modbus_client->connectDevice();
 
+
+    QTimer timer;
+    timer.setInterval(2000); // 2 сек
+    timer.setSingleShot(true);
+    connect(&timer, SIGNAL(timeout()), &m_event_loop, SLOT(quit()));
+    timer.start();
     m_event_loop.exec();
 
-    while(!m_MessageQueue.isEmpty())
+    if(m_modbus_client->state()==QModbusDevice::ConnectedState)
     {
-        m_QueueMutex.lock();
-        m_modbus_unit = m_MessageQueue.dequeue();
-        m_QueueMutex.unlock();
-
-        QModbusReply *reply = m_modbus_client->sendReadRequest(m_modbus_unit, 1);
-
-        QEventLoop eventLoop;
-        connect(reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-
-        eventLoop.exec();
-
-        QModbusDataUnit repl_unit = reply->result();
-        rcv_data.clear();
-        for (uint i = 0; i < repl_unit.valueCount(); i++)
+        while(!m_MessageQueue.isEmpty())
         {
-            rcv_data.append(repl_unit.value(i));
+            m_QueueMutex.lock();
+            m_modbus_unit = m_MessageQueue.dequeue();
+            m_QueueMutex.unlock();
+
+            QModbusReply *reply = m_modbus_client->sendReadRequest(m_modbus_unit, 1);
+
+            QEventLoop eventLoop;
+            connect(reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+
+            eventLoop.exec();
+
+            QModbusDataUnit repl_unit = reply->result();
+            rcv_data.clear();
+            for (uint i = 0; i < repl_unit.valueCount(); i++)
+            {
+                rcv_data.append(repl_unit.value(i));
+            }
+
+            emit signalRcvData(rcv_data);
+
+            // qDebug() << repl_unit.valueCount();
+
+            // for (uint i = 0; i < repl_unit.valueCount(); i++) {
+            //     qDebug() << "Адрес" << repl_unit.startAddress() + i
+            //              << "значение" << repl_unit.value(i);
+            // }
+
         }
 
-        emit signalRcvData(rcv_data);
-
-        // qDebug() << repl_unit.valueCount();
-
-        // for (uint i = 0; i < repl_unit.valueCount(); i++) {
-        //     qDebug() << "Адрес" << repl_unit.startAddress() + i
-        //              << "значение" << repl_unit.value(i);
-        // }
-
+        m_modbus_client->disconnectDevice();
+    } else
+    {
+     qDebug() << "modbus disconnected";
     }
-
-    m_modbus_client->disconnectDevice();
-   // qDebug() << "modbus disconnected";
     m_Mutex.lock();
     m_state = MODBUS_STATE_IDLE;
     m_Mutex.unlock();

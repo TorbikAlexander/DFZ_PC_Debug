@@ -1796,13 +1796,17 @@ void MainWindow::on_pushButton_42_clicked()
 void MainWindow::slotProcessRcvDFZRegData(QList<quint16> reg_data)
 {
     bool is_checked;
+    bool is_change;
+    const QString const_style[2] = {"QCheckBox { color: black; }","QCheckBox { color: red; }"};
 
     for(quint8 i=3;i<5;i++)
     {
         for(quint8 j=0;j<8;j++)
         {
             is_checked = (bool)(reg_data[i] & (1<<j));
+            is_change = is_checked ^ m_MursReleState[(i-3)*8+j]->isChecked();
             m_MursReleState[(i-3)*8+j]->setChecked(is_checked);
+            m_MursReleState[(i-3)*8+j]->setStyleSheet(const_style[is_change]);
         }
     }
 
@@ -1811,7 +1815,9 @@ void MainWindow::slotProcessRcvDFZRegData(QList<quint16> reg_data)
         for(quint8 j=0;j<16;j++)
         {
             is_checked = (bool)(reg_data[i] & (1<<j));
+            is_change = is_checked ^ m_MDFZRegscheckBox[(i-8)*16+j]->isChecked();
             m_MDFZRegscheckBox[(i-8)*16+j]->setChecked(is_checked);
+            m_MDFZRegscheckBox[(i-8)*16+j]->setStyleSheet(const_style[is_change]);
         }
     }
 }
